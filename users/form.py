@@ -22,18 +22,33 @@ class RegisterForm(forms.Form):
         'id':'password',
 
     }))
+    password2 = forms.CharField(label='Confirmar contraseña', required=True, widget= forms.PasswordInput(attrs={
+        'class':"form-control",
+        'id':'password2',
+
+    }))
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError('El nombre de usuario ya esta en uso')
-        else:
-            return username
+        return username
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('El correo ya existe')
-        else:
-            return email
-
+        return email
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('password') != cleaned_data.get('password2'):
+            self.add_error('password2', 'Las contraseñas deben ser iguales')
+     
+    def save(self):
+        
+        return User.objects.create_user(
+                                self.cleaned_data.get('username'),
+                                self.cleaned_data.get('email'),
+                                self.cleaned_data.get('password')
+        )
