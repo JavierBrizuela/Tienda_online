@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+from django.db.models.signals import pre_save
 
 # Create your models here.
 class Product(models.Model):
@@ -10,3 +12,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+    """ sobreescribir metodo save
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Product, self).save(*args, **kwargs) """
+
+def set_slug(sender, instance, *args, **kwargs): #callback
+        instance.slug = slugify(instance.title)
+
+pre_save.connect(set_slug, sender=Product)
