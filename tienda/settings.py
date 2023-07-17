@@ -45,6 +45,7 @@ THIRDS_APPS = [
 LOCAL_APPS = [
     'users',
     'core',
+    'product',
 ]
 
 INSTALLED_APPS = THIRDS_APPS + LOCAL_APPS + BASE_APPS

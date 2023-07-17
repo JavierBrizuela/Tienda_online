@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 {% block container %}    
     <h1>Pagina inicio</h1>
+    <ul class="list-group">
+        <h2>{{ message }}</h2>    
+        {% for item in product_list %}
+            <li class="lidt-group-item">{{ item.title }}
+            <span class="text-success">{{ item.price }}</span>
+            </li>
+        {% endfor %}
+            
+    </ul>
 {% endblock %}
   
