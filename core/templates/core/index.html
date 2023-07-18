@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 {% block container %}    
-    <h1>Pagina inicio</h1>
     <ul class="list-group">
-        <h2>{{ message }}</h2>    
-        {% for item in product_list %}
-            <li class="lidt-group-item">{{ item.title }}
-            <span class="text-success">{{ item.price }}</span>
-            </li>
+        <h4 class="text-center">{{ message }}</h2>    
+        <div class="row">
+            {% for item in product_list %}
+                <div class="col-3 mt-3">
+                    <div class="card h-100">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="imagen del producto">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">{{ item.description }}</p>
+                            <a href="#" class="btn btn-primary">ver mas</a>
+                        </div>
+                        
+                    </div>
+                </div>
         {% endfor %}
-            
+        </div>    
     </ul>
 {% endblock %}
   
