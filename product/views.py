@@ -15,4 +15,12 @@ class ProductsListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     template_name = 'product/product.html'
+
+class ProductSearchListView(ListView):
+    model = Product
+    template_name = 'product/search.html'
+    def get_queryset(self):
+        return Product.objects.filter(title=self.query())
     
+    def query(self):
+        return self.request.GET.get('q')
