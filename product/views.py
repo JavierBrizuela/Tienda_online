@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product
@@ -19,8 +20,15 @@ class ProductDetailView(DetailView):
 class ProductSearchListView(ListView):
     model = Product
     template_name = 'product/search.html'
+    
     def get_queryset(self):
-        return Product.objects.filter(title=self.query())
+        return Product.objects.filter(title__icontains=self.query())
     
     def query(self):
         return self.request.GET.get('q')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query']= self.query()
+        context['quantity'] = context['product_list'].count()
+        return context

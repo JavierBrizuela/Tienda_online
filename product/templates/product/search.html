@@ -2,8 +2,10 @@
 
 {% block container %}
   <div class="col">
-    <p>Busqueda de productos</p>
-
+    {% include 'product/snippets/search.html' with query=query %}
+    <hr>
+    <p>Resultado para la busqueda de {{ query }}: {{ quantity }}</p>
+    {% include 'product/snippets/list.html' %}
   </div>  
 {% endblock container %}
     
