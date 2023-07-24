@@ -1,0 +1,74 @@
+[
+{
+  "model": "product.product",
+  "pk": 1,
+  "fields": {
+    "title": "Remera para hombre",
+    "description": "remera deportiva, varios colores",
+    "price": "5000.00",
+    "slug": "remera-hombre",
+    "image": "product/415221-1200-1200.webp",
+    "created_at": "2023-07-17T00:54:43.218Z"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 2,
+  "fields": {
+    "title": "Remera para mujer",
+    "description": "remera deportiva, varios colores",
+    "price": "5000.00",
+    "slug": "remera-mujer",
+    "image": "product/remera_mujer.jpg",
+    "created_at": "2023-07-17T01:02:18.815Z"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 3,
+  "fields": {
+    "title": "Zapatillas hombre",
+    "description": "zapatillas deportivas masculinas",
+    "price": "30000.00",
+    "slug": "zapatillas-hombre",
+    "image": "product/D_NQ_NP_612885-MLA54221604428_032023-O.webp",
+    "created_at": "2023-07-17T19:15:01.679Z"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 4,
+  "fields": {
+    "title": "Zapatillas mujer",
+    "description": "Zapatillas deportivas femeninas",
+    "price": "30000.00",
+    "slug": "zapatillas-mujer",
+    "image": "product/zapatillas-trekking-montagne-fire-t4-mujer.jpg",
+    "created_at": "2023-07-17T19:15:34.733Z"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 5,
+  "fields": {
+    "title": "Gorra",
+    "description": "Gorra varios colores",
+    "price": "5000.00",
+    "slug": "gorra",
+    "image": "product/c2875-307-view11-ce569bb46f35d28e2516101205841341-480-0.webp",
+    "created_at": "2023-07-17T19:29:27.725Z"
+  }
+},
+{
+  "model": "product.product",
+  "pk": 7,
+  "fields": {
+    "title": "gorra",
+    "description": "nueva gorra",
+    "price": "5000.00",
+    "slug": "gorra-f584f95c",
+    "image": "product/gorra-min.jpg",
+    "created_at": "2023-07-18T00:20:46.450Z"
+  }
+}
+]

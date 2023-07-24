@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.models import User
+from users.models import User
 from django.contrib import messages
 from .form import RegisterForm
 
@@ -9,7 +9,7 @@ from .form import RegisterForm
 def login_view(request):
     
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('product:index')
     
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -19,7 +19,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, f'Bienvenido {user.username}')
-            return redirect('index')
+            return redirect('product:index')
         else:
             messages.warning(request, 'su usuario o contraseña no coinciden')
     return render(request, 'users/login.html', {})
@@ -32,7 +32,7 @@ def logout_view(request):
 def register(request):
     
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('product:index')
     
     form = RegisterForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
@@ -40,6 +40,6 @@ def register(request):
         if user:
             login(request, user)
             messages.success(request, 'Usuario creado correctamente')
-            return redirect('index')
+            return redirect('product:index')
 
     return render(request, 'users/register.html', {'form':form})

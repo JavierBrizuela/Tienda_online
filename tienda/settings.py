@@ -44,8 +44,8 @@ THIRDS_APPS = [
 
 LOCAL_APPS = [
     'users',
-    'core',
     'product',
+    'categories',
 ]
 
 INSTALLED_APPS = THIRDS_APPS + LOCAL_APPS + BASE_APPS
@@ -61,6 +61,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'tienda.urls'
+
+AUTH_USER_MODEL = 'users.User'
 
 TEMPLATES = [
     {

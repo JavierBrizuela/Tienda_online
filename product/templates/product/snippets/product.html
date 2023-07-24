@@ -5,6 +5,6 @@
     <div class="card-body">
         <h5 class="card-title">{{ item.title }}</h5>
         <p class="card-text">{{ item.description }}</p>
-        <a href="#" class="btn btn-primary">ver mas</a>
+        <a href="{% url 'product:product' item.slug %}" class="btn btn-primary">ver mas</a>
     </div>   
 </div>
