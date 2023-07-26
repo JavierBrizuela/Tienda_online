@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block container %}    
-    <ul class="list-group">
-        <h4 class="text-center">{{ message }}</h2>    
+
         {% include 'product/snippets/search.html' %}
+            <h4 class="text-center">{{ message }}</h4>  
         {% include 'product/snippets/list.html' %}
-    </ul>
+    
 {% endblock %}
   
