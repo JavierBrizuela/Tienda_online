@@ -30,11 +30,31 @@ class Cart(models.Model):
         self.total = self.subtotal * (1 + decimal.Decimal(Cart.FEE))
         self.save()
 
+    def product_related(self):
+        return self.cartproducts_set.select_related('product')
+
+class CartProductsManager(models.Manager):
+    
+    def create_or_update_cuantity(self, cart, product, cuantity=1):
+        object, created = self.get_or_create(cart=cart, product=product)
+        print(type(object.cuantity))
+        print(type(cuantity))
+        if not created:
+            cuantity = object.cuantity + cuantity
+        
+        object.update_cuantity(cuantity)
+        return object
+
 class CartProducts(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     cuantity = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
+    objects = CartProductsManager()
+
+    def update_cuantity(self, cuantity=1):
+        self.cuantity = cuantity
+        self.save()
 
 def set_cart_id(sender, instance, *args, **kwargs):
     if not instance.cart_id:
