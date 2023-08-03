@@ -47,6 +47,7 @@ LOCAL_APPS = [
     'product',
     'categories',
     'carts',
+    'orders'
 ]
 
 INSTALLED_APPS = THIRDS_APPS + LOCAL_APPS + BASE_APPS

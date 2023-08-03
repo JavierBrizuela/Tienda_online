@@ -23,7 +23,7 @@ def add(request):
                                 product=product, 
                                 cuantity=cuantity)
     
-    return render(request, 'carts/add.html', {'product':product})
+    return render(request, 'carts/add.html', {'product':product,'cuantity':cuantity})
 
 def remove(request):
     cart = get_or_create_cart(request)

@@ -1,7 +1,7 @@
 from django.db import models
 from users.models import User
 from product.models import Product
-from django.db.models.signals import pre_save, m2m_changed
+from django.db.models.signals import pre_save, m2m_changed, post_save
 import uuid
 import decimal
 
@@ -23,7 +23,7 @@ class Cart(models.Model):
         self.update_total()
 
     def update_subtotal(self):
-        self.subtotal = sum([product.price for product in self.product.all() ])
+        self.subtotal = sum([cart_products.product.price * cart_products.cuantity for cart_products in self.product_related() ])
         self.save()
 
     def update_total(self):
@@ -37,8 +37,7 @@ class CartProductsManager(models.Manager):
     
     def create_or_update_cuantity(self, cart, product, cuantity=1):
         object, created = self.get_or_create(cart=cart, product=product)
-        print(type(object.cuantity))
-        print(type(cuantity))
+       
         if not created:
             cuantity = object.cuantity + cuantity
         
@@ -60,9 +59,13 @@ def set_cart_id(sender, instance, *args, **kwargs):
     if not instance.cart_id:
         instance.cart_id = str(uuid.uuid4())
 
+def post_save_update_totals(sender, instance, *args, **kwargs):
+    instance.cart.update_totals()
+
 def update_totals(sender, instance, action, *args, **kwargs):
     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
         instance.update_totals()
 
 pre_save.connect(set_cart_id, sender=Cart)
+post_save.connect(post_save_update_totals, sender=CartProducts)
 m2m_changed.connect(update_totals, sender= Cart.product.through )
