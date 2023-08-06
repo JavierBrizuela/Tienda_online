@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from users.models import User
 from django.contrib import messages
 from .form import RegisterForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -19,9 +20,15 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, f'Bienvenido {user.username}')
+            
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET['next'])
+            
             return redirect('product:index')
+        
         else:
             messages.warning(request, 'su usuario o contraseña no coinciden')
+    
     return render(request, 'users/login.html', {})
 
 def logout_view(request):
