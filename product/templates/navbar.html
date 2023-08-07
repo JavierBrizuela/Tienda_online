@@ -3,6 +3,7 @@
 {% url 'logout' as logout %}
 {% url 'register' as register %}
 {% url 'carts:cart' as cart %}
+{% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
 
 <nav class="navbar bg-dark navbar-expand-lg" data-bs-theme="dark">
 
@@ -17,6 +18,10 @@
         <li class="nav-item ">
           <a class="nav-link {% if request.path == cart %}active{% endif %}" href="{{ cart }}" >Mi carrito 
           <i class="fas fa-shopping-cart"></i></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link {% if request.path == shipping_addresses %}active{% endif %}" href="{{ shipping_addresses }}" >Mis direcciónes 
+          <i class="fas fa-location-arrow"></i></a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

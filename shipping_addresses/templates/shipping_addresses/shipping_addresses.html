@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% url 'shipping_addresses:create' as create %}
+{% block container %}
+    <div class="col">
+        <div class="h3">Mis sirecciones</div>
+        <div><a href="{% url 'shipping_addresses:create' %}">agregar dirección</a></div>
+    </div>
+{% endblock container %}
+    
