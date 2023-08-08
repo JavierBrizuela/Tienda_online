@@ -1,0 +1,22 @@
+<div class="card">
+    <h5 class="card-header"></h5>
+    <div class="card-body">
+        <h5 class="card-title">{{ shipping_address.address }}</h5>
+        <div class="card-title">
+            {{  shipping_address.reference }}
+        </div>
+        <div class="card-title">
+            {{  shipping_address.postal_code }}
+        </div>
+        <div class="mt-2">
+            <a class="btn btn-info mt-2" href="">Editar</a>
+            
+            {% if not shipping_address.default %}
+                <a class="btn btn-danger mt-2" href="">Default</a>
+            {% else %}
+                <div class="text-info">Direccion principal</div>
+            {% endif %} 
+            
+        </div>
+    </div>
+</div>
